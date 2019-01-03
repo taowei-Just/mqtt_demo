@@ -42,7 +42,6 @@ public class Mqtt_client_server extends Service implements IMq {
     public void onCreate() {
         super.onCreate();
         EventBus.getDefault().register(this);
-
     }
 
 
@@ -59,6 +58,7 @@ public class Mqtt_client_server extends Service implements IMq {
             sengUnConnect();
             return;
         }
+
         // mqtt消息
         MqttMessage mqttMessage = new MqttMessage();
         mqttMessage.setId(messageId++);
@@ -151,6 +151,7 @@ public class Mqtt_client_server extends Service implements IMq {
         serverMsg.from = ServerMsg.Type.server;
         serverMsg.msg = "mq alerady connect!";
         EventBus.getDefault().post(serverMsg);
+
     }
 
     @Override
@@ -166,7 +167,7 @@ public class Mqtt_client_server extends Service implements IMq {
     }
 
     @Override
-    public void sub(String theme) throws Exception {
+    public void sub(String[] theme) throws Exception {
         //订阅主题
         mqttClient.subscribe(theme);
     }
@@ -200,9 +201,11 @@ public class Mqtt_client_server extends Service implements IMq {
                 serverUrl = "tcp://" + mqOperate.msg.ip + ":" + mqOperate.msg.port;
                 clientid = mqOperate.msg.clientId;
                 theme = mqOperate.msg.theme;
+                userName =mqOperate.msg.userName;
+                password =mqOperate.msg.password;
                 try {
                     connect();
-                    sub(mqOperate.msg.sub);
+                    sub(mqOperate.msg.sub.split("\\|"));
                     sendCennect();
                 } catch (Exception e) {
                     e.printStackTrace();

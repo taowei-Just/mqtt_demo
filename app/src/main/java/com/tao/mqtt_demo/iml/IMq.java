@@ -9,5 +9,5 @@ public interface IMq {
     void send(MqMssage mssage) throws MqttException, Exception;
     void connect() throws MqttException, Exception;
     void disconnect() throws MqttException, Exception;
-    void sub(String theme) throws MqttException, Exception;
+    void sub(String[] theme) throws MqttException, Exception;
 }

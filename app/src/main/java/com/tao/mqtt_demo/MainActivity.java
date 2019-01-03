@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,8 +36,15 @@ public class MainActivity extends AppCompatActivity {
     EditText etID;
     @BindView(R.id.et_sub)
     EditText etSub;
+    @BindView(R.id.et_account)
+    EditText etAccount;
+    @BindView(R.id.et_password)
+    EditText etPassword;
     @BindView(R.id.tv_rec)
     TextView tvRec;
+
+    @BindView(R.id.scrollView)
+    ScrollView scrollView;
 
     StringBuilder sbStr = new StringBuilder();
 
@@ -64,9 +72,10 @@ public class MainActivity extends AppCompatActivity {
         mqOperate.msg.port = etPort.getText().toString();
         mqOperate.msg.sub = etSub.getText().toString();
         mqOperate.msg.theme = etTheme.getText().toString();
+        mqOperate.msg.userName =etAccount.getText().toString();
+        mqOperate.msg.password = etPassword.getText().toString();
 
         EventBus.getDefault().post(mqOperate);
-
     }
 
     private void updataText(String s) {
@@ -75,7 +84,15 @@ public class MainActivity extends AppCompatActivity {
             return;
         sbStr.append(s + "\n ");
         tvRec.setText(sbStr.toString());
-    }
+        scrollView.post(new Runnable() {
+            @Override
+            public void run() {
+             scrollView.fullScroll(ScrollView.FOCUS_DOWN);
+            }
+        });
+
+
+}
 
     @OnClick(R.id.bt_send)
     public void send() {

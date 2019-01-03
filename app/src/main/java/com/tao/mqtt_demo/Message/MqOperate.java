@@ -17,6 +17,8 @@ public class MqOperate implements Serializable {
         public    String sub ;
         public   String theme ;
         public   String clientId ;
+        public   String userName ;
+        public   String password ;
 
         @Override
         public String toString() {
@@ -26,6 +28,8 @@ public class MqOperate implements Serializable {
                     ", sub='" + sub + '\'' +
                     ", theme='" + theme + '\'' +
                     ", clientId='" + clientId + '\'' +
+                    ", userName='" + userName + '\'' +
+                    ", password='" + password + '\'' +
                     '}';
         }
     }

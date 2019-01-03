@@ -8,12 +8,12 @@
 
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
@@ -54,14 +54,41 @@
                 android:ems="5"
                 android:text="usr1_id"
                 />
-            <EditText
-                android:id="@+id/et_sub"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="sub"
-                android:ems="5"
-                android:text="usr2_sub"
-                />
+                android:orientation="horizontal"
+                >
+                <EditText
+                    android:id="@+id/et_sub"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="sub"
+                    android:ems="5"
+                    android:text="usr2_theme|usr3_theme"
+                    android:lines="1"
+                    />
+                <EditText
+                    android:layout_marginLeft="20dp"
+                    android:id="@+id/et_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="account"
+                    android:ems="5"
+                    android:text="admin"
+                    />
+
+                <EditText
+                    android:id="@+id/et_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="password"
+                    android:ems="5"
+                    android:text="admin"
+                    />
+
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -107,6 +134,7 @@
         </LinearLayout>
 
         <ScrollView
+            android:id="@+id/scrollView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
