@@ -23,6 +23,7 @@
                 android:layout_height="wrap_content"
                 android:hint="ip"
                 android:ems="10"
+                android:text="2p172088f2.iok.la"
                 />
 
 
@@ -33,6 +34,8 @@
                 android:layout_height="wrap_content"
                 android:hint="port"
                 android:ems="6"
+                android:text="10000"
+
                 />
 
             <EditText
@@ -41,6 +44,7 @@
                 android:layout_height="wrap_content"
                 android:hint="theme"
                 android:ems="5"
+                android:text="1"
                 />
             <EditText
                 android:id="@+id/et_id"
@@ -48,12 +52,15 @@
                 android:layout_height="wrap_content"
                 android:hint="id"
                 android:ems="5"
-                />  <EditText
+                android:text="usr1"
+                />
+            <EditText
                 android:id="@+id/et_sub"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="sub"
                 android:ems="5"
+                android:text="usr2"
                 />
             <Button
                 android:id="@+id/bt_conn"
@@ -76,6 +83,7 @@
                 android:layout_height="100dp"
                 android:ems="10"
                 android:gravity="bottom"
+                android:text="test_from_usr1"
                 />
 
             <Button

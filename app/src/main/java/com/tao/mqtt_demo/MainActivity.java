@@ -10,6 +10,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tao.mqtt_demo.Message.Mess;
+import com.tao.mqtt_demo.Message.MqMssage;
+import com.tao.mqtt_demo.Message.MqOperate;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -44,15 +46,34 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        EventBus.getDefault().register(this);
         startService(new Intent(this, Mqtt_client_server.class));
     }
 
     @OnClick(R.id.bt_conn)
     public void conn() {
-        Mess event = new Mess();
-        event.type = Mess.Type.mq_operate;
-        event.msg = "conn";
-        EventBus.getDefault().post(event);
+
+        MqOperate mqOperate = new MqOperate();
+        mqOperate.type = MqOperate.Type.connect;
+        mqOperate.msg = new MqOperate.Message();
+
+        mqOperate.msg.clientId = etID.getText().toString();
+        mqOperate.msg.ip = etIP.getText().toString();
+        mqOperate.msg.port = etPort.getText().toString();
+        mqOperate.msg.sub = etSub.getText().toString();
+        mqOperate.msg.theme = etTheme.getText().toString();
+
+        EventBus.getDefault().post(mqOperate);
+
+        updataText("连接mqtt..");
+    }
+
+    private void updataText(String s) {
+
+        if (TextUtils.isEmpty(s))
+            return;
+        sbStr.append(s);
+        tvRec.setText(sbStr.toString()+"\n ");
     }
 
     @OnClick(R.id.bt_send)
@@ -62,18 +83,18 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        Mess event = new Mess();
-        event.type = Mess.Type.mq_operate;
-        event.msg = "send";
-        event.data =etMess.getText().toString();
-        EventBus.getDefault().post(event);
+        MqMssage mqMssage = new MqMssage();
+        mqMssage.type = MqMssage.Type.send;
+        mqMssage.message = etMess.getText().toString();
+        EventBus.getDefault().post(mqMssage);
+
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void msg(Mess msg) {
         if (msg == null)
             return;
-        Log.e(getClass().getSimpleName(), " 收到消息：" +msg.toString());
+        Log.e(getClass().getSimpleName(), " 收到消息：" + msg.toString());
         if (msg.type == Mess.Type.mq_message) {
 
             sbStr.append("编号" + "" + "收到：" + msg.data);
@@ -81,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (msg.type == Mess.Type.server) {
-            sbStr.append( "收到服务消息：" +msg.toString());
+            sbStr.append("收到服务消息：" + msg.toString());
 
             return;
         }
