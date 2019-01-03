@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.tao.mqtt_demo.Message.Mess;
 import com.tao.mqtt_demo.Message.MqMssage;
 import com.tao.mqtt_demo.Message.MqOperate;
+import com.tao.mqtt_demo.Message.ServerMsg;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.bt_conn)
     public void conn() {
 
+        updataText("连接mqtt..");
         MqOperate mqOperate = new MqOperate();
         mqOperate.type = MqOperate.Type.connect;
         mqOperate.msg = new MqOperate.Message();
@@ -65,15 +67,14 @@ public class MainActivity extends AppCompatActivity {
 
         EventBus.getDefault().post(mqOperate);
 
-        updataText("连接mqtt..");
     }
 
     private void updataText(String s) {
 
         if (TextUtils.isEmpty(s))
             return;
-        sbStr.append(s);
-        tvRec.setText(sbStr.toString()+"\n ");
+        sbStr.append(s + "\n ");
+        tvRec.setText(sbStr.toString());
     }
 
     @OnClick(R.id.bt_send)
@@ -82,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "没有内容", Toast.LENGTH_SHORT).show();
             return;
         }
-
+        updataText("发送 mq消息..");
         MqMssage mqMssage = new MqMssage();
         mqMssage.type = MqMssage.Type.send;
         mqMssage.message = etMess.getText().toString();
@@ -106,5 +107,25 @@ public class MainActivity extends AppCompatActivity {
 
             return;
         }
+    }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onServerMss(ServerMsg msg) {
+
+        if (msg == null)
+            return;
+        updataText(msg.msg);
+    }
+
+    @OnClick(R.id.bt_close)
+    public void close() {
+
+        updataText("关闭mq");
+        MqOperate mqOperate = new MqOperate();
+        mqOperate.type = MqOperate.Type.close;
+        mqOperate.msg = new MqOperate.Message();
+        EventBus.getDefault().post(mqOperate);
+
     }
 }

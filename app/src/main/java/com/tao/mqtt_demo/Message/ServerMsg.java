@@ -2,8 +2,10 @@ package com.tao.mqtt_demo.Message;
 
 public class ServerMsg {
 
+    public  Type from;
+    public  String msg;
 
-    enum Type {
-        conn , close ,send,receiver
+    public enum Type {
+        server , ui
     }
 }
