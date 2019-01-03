@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <EditText
+                android:id="@+id/et_ip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="ip"
+                android:ems="10"
+                />
+
+
+            <EditText
+                android:id="@+id/et_port"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="port"
+                android:ems="6"
+                />
+
+            <EditText
+                android:id="@+id/et_theme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="theme"
+                android:ems="5"
+                />
+            <EditText
+                android:id="@+id/et_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="id"
+                android:ems="5"
+                />  <EditText
+                android:id="@+id/et_sub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="sub"
+                android:ems="5"
+                />
+            <Button
+                android:id="@+id/bt_conn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="连接"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/et_mess"
+
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:ems="10"
+                android:gravity="bottom"
+                />
+
+            <Button
+                android:id="@+id/bt_send"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="发送" />
+
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_rec"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hello World!"
+          />
+
+        </ScrollView>
+
+
+
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>
